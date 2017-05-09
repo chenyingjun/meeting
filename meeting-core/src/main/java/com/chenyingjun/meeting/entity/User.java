@@ -11,9 +11,13 @@ import lombok.Data;
  */
 @Data
 public class User {
+
+    /** 用户主键 */
     private long id;
 
+    /** 用户密码 */
     private String password;
 
+    /** 用户名 */
     private String username;
 }

@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 2017年05月08日 chenyingjun
  */
 @SpringBootApplication
+//启注解事务管理
+//@EnableTransactionManagement
+//@MapperScan("com.chenyingjun.meeting.mapper")
 public class Application {
 
 	public static void main(String[] args) {

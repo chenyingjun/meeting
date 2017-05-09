@@ -1,12 +1,14 @@
 package com.chenyingjun.meeting.rest;
 
 import com.chenyingjun.meeting.entity.User;
+import com.chenyingjun.meeting.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -24,6 +26,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -46,12 +51,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable Long id){
         logger.info("--------------------------getUser");
-        User user = new User();
-        user.setId(id);
-        user.setPassword("abc");
-        user.setUsername("12345");
-        logger.error("--------------------------getUser");
-        return user;
+        return userService.selectByPrimaryKey(id);
     }
 
     @ApiOperation(value="获取所有用户详细信息", notes="获取用户列表信息")
