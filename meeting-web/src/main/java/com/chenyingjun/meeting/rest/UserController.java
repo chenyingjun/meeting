@@ -38,7 +38,7 @@ public class UserController {
             @ApiImplicitParam(dataType = "User", name = "user", value = "用户信息", required = true)
     })
     @RequestMapping(value = "/{id}",method = RequestMethod.POST)
-    public User insert(@PathVariable Long id, @RequestBody User user){
+    public User insert(@PathVariable Integer id, @RequestBody User user){
 
         System.out.println("id:"+id+", user:"+user);
         user.setId(id);
@@ -49,7 +49,7 @@ public class UserController {
     @ApiOperation(value="获取指定id用户详细信息", notes="根据user的id来获取用户详细信息")
     @ApiImplicitParam(name = "id",value = "用户id", dataType = "String", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public User getUser(@PathVariable Long id){
+    public User getUser(@PathVariable Integer id){
         logger.info("--------------------------getUser");
         return userService.selectByPrimaryKey(id);
     }
@@ -60,7 +60,7 @@ public class UserController {
 
         List<User> list = new ArrayList<>();
         User user = new User();
-        user.setId(15L);
+        user.setId(15);
         user.setPassword("ricky");
         user.setUsername("root");
 

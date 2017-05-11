@@ -13,7 +13,7 @@ import lombok.Data;
 public class User {
 
     /** 用户主键 */
-    private long id;
+    private Integer id;
 
     /** 用户密码 */
     private String password;

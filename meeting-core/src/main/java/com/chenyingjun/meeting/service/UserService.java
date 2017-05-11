@@ -14,12 +14,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
-//
-//    @Autowired
-//    private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 
-    public User selectByPrimaryKey(long id){
-        return null;
+    public User selectByPrimaryKey(Integer id){
+        User user = new User();
+        user.setId(id);
+        return userMapper.selectOne(user);
     }
 
 }
