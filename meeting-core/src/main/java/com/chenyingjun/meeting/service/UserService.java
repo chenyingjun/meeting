@@ -18,9 +18,7 @@ public class UserService {
     private UserMapper userMapper;
 
     public User selectByPrimaryKey(Integer id){
-        User user = new User();
-        user.setId(id);
-        return userMapper.selectOne(user);
+        return userMapper.selectByPrimaryKey(id);
     }
 
 }

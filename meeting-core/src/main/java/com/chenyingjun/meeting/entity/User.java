@@ -10,10 +10,7 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
-public class User {
-
-    /** 用户主键 */
-    private Integer id;
+public class User extends BaseEntity{
 
     /** 用户密码 */
     private String password;
