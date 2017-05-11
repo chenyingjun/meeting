@@ -7,6 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 日期工具
+ *
+ * @author chenyingjun
+ * @version 2017年05月05日
+ * @since 1.0
+ */
 public class DateUtil {
 	public static final String SIMPLE_DATE_STR = "yyyy-MM-dd";
 	public static final String FULL_DATE_STR = "yyyy-MM-dd HH:mm:ss";

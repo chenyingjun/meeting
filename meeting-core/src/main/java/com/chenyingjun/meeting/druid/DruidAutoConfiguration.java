@@ -14,8 +14,11 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * @author liuzh
- * @since 2017/2/5.
+ * 数据库连接
+ *
+ * @author chenyingjun
+ * @version 2017年05月05日
+ * @since 1.0
  */
 @Configuration
 @EnableConfigurationProperties(DruidProperties.class)

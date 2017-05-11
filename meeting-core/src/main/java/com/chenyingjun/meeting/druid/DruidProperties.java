@@ -5,8 +5,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * 只提供了常用的属性，如果有需要，自己添加
  *
- * @author liuzh
- * @since 2017/2/5.
+ * @author chenyingjun
+ * @version 2017年05月05日
+ * @since 1.0
  */
 @ConfigurationProperties(prefix = "druid")
 public class DruidProperties {

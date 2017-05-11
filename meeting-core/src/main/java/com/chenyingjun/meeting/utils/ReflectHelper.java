@@ -6,8 +6,11 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
+ * 反射工具
+ *
  * @author chenyingjun
- *	反射工具
+ * @version 2017年05月05日
+ * @since 1.0
  */
 public class ReflectHelper {
 	/**

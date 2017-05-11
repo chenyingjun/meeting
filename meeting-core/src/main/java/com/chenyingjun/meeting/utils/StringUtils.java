@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 /**
  * 字符串相关方法
  *
+ * @author chenyingjun
+ * @version 2017年05月05日
+ * @since 1.0
  */
 public class StringUtils {
 

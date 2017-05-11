@@ -1,10 +1,11 @@
 package com.chenyingjun.meeting.utils;
 
-
 /**
- * 
- * 功能描述:常用的正则表达式，用于匹配字符串等
- * 
+ * 常用的正则表达式，用于匹配字符串等
+ *
+ * @author chenyingjun
+ * @version 2017年05月05日
+ * @since 1.0
  */
 public class RegexStrings {
 	
