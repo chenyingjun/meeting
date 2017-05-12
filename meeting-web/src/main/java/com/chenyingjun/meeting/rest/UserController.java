@@ -2,6 +2,7 @@ package com.chenyingjun.meeting.rest;
 
 import com.chenyingjun.meeting.entity.User;
 import com.chenyingjun.meeting.service.UserService;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -54,19 +55,11 @@ public class UserController {
         return userService.selectByPrimaryKey(id);
     }
 
-    @ApiOperation(value="获取所有用户详细信息", notes="获取用户列表信息")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<User> getUserList(){
-
-        List<User> list = new ArrayList<>();
-        User user = new User();
-        user.setId(15);
-        user.setPassword("ricky");
-        user.setUsername("root");
-
-        list.add(user);
-
-        return list;
+    @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public PageInfo<User> selectPage(User user){
+        List<User> userList = userService.selectPage(user);
+        return new PageInfo<>(userList);
     }
 
     @ApiIgnore

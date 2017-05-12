@@ -3,6 +3,7 @@ package com.chenyingjun.meeting;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  *
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan("com.chenyingjun.meeting.mapper")
+@ImportResource(value = { "classpath:applicationContext*.xml" })
 public class Application {
 
 	public static void main(String[] args) {

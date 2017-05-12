@@ -2,8 +2,12 @@ package com.chenyingjun.meeting.service;
 
 import com.chenyingjun.meeting.entity.User;
 import com.chenyingjun.meeting.mapper.UserMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 测试用户信息服务
@@ -18,7 +22,25 @@ public class UserService {
     private UserMapper userMapper;
 
     public User selectByPrimaryKey(Integer id){
+        User user = new User();
+        user.setUsername("333bb");
+        List<User> userList = userMapper.select(user);
+        for (User user1 : userList) {
+            System.out.println("---------------------------" + user1.getPassword() + "--" + user1.getUsername());
+        }
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 查询用户列表
+     * @param user 查询用户信息
+     * @return
+     */
+    public List<User> selectPage(User user) {
+        if (user.getPage() != null && user.getRows() != null) {
+            PageHelper.startPage(user.getPage(), user.getRows());
+        }
+        return userMapper.select(user);
     }
 
 }

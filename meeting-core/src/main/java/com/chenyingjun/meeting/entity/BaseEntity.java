@@ -17,4 +17,12 @@ public class BaseEntity {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    /** 页码 */
+    @Transient
+    private Integer page = 1;
+
+    /** 每页数量 */
+    @Transient
+    private Integer rows = 10;
 }
