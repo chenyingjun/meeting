@@ -56,6 +56,12 @@
             <version>${mybatis.spring.version}</version>
         </dependency>
         <!-- mybatis结束 -->
+        <!-- https://mvnrepository.com/artifact/aspectj/aspectjrt -->
+        <dependency>
+            <groupId>aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.5.3</version>
+        </dependency>
 
         <!-- 数据库 -->
         <dependency>

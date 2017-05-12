@@ -11,4 +11,5 @@ import com.chenyingjun.meeting.utils.MyMapper;
  * @since 1.0
  */
 public interface UserMapper extends MyMapper<User> {
+
 }
