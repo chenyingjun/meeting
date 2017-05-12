@@ -34,12 +34,12 @@ public class UserService {
     /**
      * 查询用户列表
      * @param user 查询用户信息
+     * @param pageNum 当前页码
+     * @param pageSize 每页数量
      * @return
      */
-    public List<User> selectPage(User user) {
-        if (user.getPage() != null && user.getRows() != null) {
-            PageHelper.startPage(user.getPage(), user.getRows());
-        }
+    public List<User> selectPage(User user, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return userMapper.select(user);
     }
 

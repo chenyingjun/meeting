@@ -13,6 +13,7 @@
     <modules>
         <module>meeting-core</module>
         <module>meeting-web</module>
+        <module>meeting-api</module>
     </modules>
 
     <parent>

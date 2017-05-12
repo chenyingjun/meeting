@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ import java.util.List;
  */
 @Api(description = "用户相关api")
 @RestController
-@RequestMapping("/api/user1")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
