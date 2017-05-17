@@ -63,6 +63,13 @@ public class UserController {
         return new PageInfo<>(userList);
     }
 
+    @ApiOperation(value="模糊查询用户信息", notes="模糊查询用户信息")
+    @RequestMapping(value = "/select/like", method = RequestMethod.POST)
+    public List<User> selectLike(User user){
+        List<User> userList = userService.selectLike(user);
+        return userList;
+    }
+
     @ApiIgnore
     @ApiOperation(value="删除指定id用户", notes="根据id来删除用户信息")
     @ApiImplicitParam(name = "id",value = "用户id", dataType = "java.lang.Long", paramType = "path")

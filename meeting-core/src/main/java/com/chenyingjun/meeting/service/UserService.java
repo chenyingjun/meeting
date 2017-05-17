@@ -43,4 +43,13 @@ public class UserService {
         return userMapper.select(user);
     }
 
+    /**
+     * 模糊查询用户信息
+     * @param user 查询用户信息
+     * @return
+     */
+    public List<User> selectLike(User user) {
+        return userMapper.selectLike(user);
+    }
+
 }
