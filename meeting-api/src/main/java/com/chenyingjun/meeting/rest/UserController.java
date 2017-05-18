@@ -1,6 +1,6 @@
 package com.chenyingjun.meeting.rest;
 
-import com.chenyingjun.meeting.entity.User;
+import com.chenyingjun.meeting.entity.UserTest;
 import com.chenyingjun.meeting.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,10 +35,10 @@ public class UserController {
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
     @ApiImplicitParams({
             @ApiImplicitParam(dataType = "java.lang.Long", name = "id", value = "id", required = true, paramType = "path"),
-            @ApiImplicitParam(dataType = "User", name = "user", value = "用户信息", required = true)
+            @ApiImplicitParam(dataType = "UserTest", name = "user", value = "用户信息", required = true)
     })
     @RequestMapping(value = "/{id}",method = RequestMethod.POST)
-    public User insert(@PathVariable Integer id, @RequestBody User user){
+    public UserTest insert(@PathVariable Integer id, @RequestBody UserTest user){
 
         System.out.println("id:"+id+", user:"+user);
         user.setId(id);
@@ -50,7 +49,7 @@ public class UserController {
     @ApiOperation(value="获取指定id用户详细信息", notes="根据user的id来获取用户详细信息")
     @ApiImplicitParam(name = "id",value = "用户id", dataType = "String", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public User getUser(@PathVariable Integer id){
+    public UserTest getUser(@PathVariable Integer id){
         logger.info("--------------------------getUser");
         return userService.selectByPrimaryKey(id);
     }
@@ -58,15 +57,15 @@ public class UserController {
 
     @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public PageInfo<User> selectPage(User user, @RequestParam int pageNum,@RequestParam int pageSize){
-        List<User> userList = userService.selectPage(user, pageNum, pageSize);
+    public PageInfo<UserTest> selectPage(UserTest user, @RequestParam int pageNum, @RequestParam int pageSize){
+        List<UserTest> userList = userService.selectPage(user, pageNum, pageSize);
         return new PageInfo<>(userList);
     }
 
     @ApiOperation(value="模糊查询用户信息", notes="模糊查询用户信息")
     @RequestMapping(value = "/select/like", method = RequestMethod.POST)
-    public List<User> selectLike(User user){
-        List<User> userList = userService.selectLike(user);
+    public List<UserTest> selectLike(UserTest user){
+        List<UserTest> userList = userService.selectLike(user);
         return userList;
     }
 

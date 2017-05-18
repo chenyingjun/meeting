@@ -1,8 +1,7 @@
 package com.chenyingjun.meeting.service;
 
-import com.chenyingjun.meeting.entity.User;
-import com.chenyingjun.meeting.mapper.UserMapper;
-import com.github.pagehelper.Page;
+import com.chenyingjun.meeting.entity.UserTest;
+import com.chenyingjun.meeting.mapper.UserTestMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +18,16 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserMapper userMapper;
+    private UserTestMapper userTestMapper;
 
-    public User selectByPrimaryKey(Integer id){
-        User user = new User();
+    public UserTest selectByPrimaryKey(Integer id){
+        UserTest user = new UserTest();
         user.setUsername("333bb");
-        List<User> userList = userMapper.select(user);
-        for (User user1 : userList) {
+        List<UserTest> userList = userTestMapper.select(user);
+        for (UserTest user1 : userList) {
             System.out.println("---------------------------" + user1.getPassword() + "--" + user1.getUsername());
         }
-        return userMapper.selectByPrimaryKey(id);
+        return userTestMapper.selectByPrimaryKey(id);
     }
 
     /**
@@ -38,9 +37,9 @@ public class UserService {
      * @param pageSize 每页数量
      * @return
      */
-    public List<User> selectPage(User user, int pageNum, int pageSize) {
+    public List<UserTest> selectPage(UserTest user, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return userMapper.select(user);
+        return userTestMapper.select(user);
     }
 
     /**
@@ -48,8 +47,8 @@ public class UserService {
      * @param user 查询用户信息
      * @return
      */
-    public List<User> selectLike(User user) {
-        return userMapper.selectLike(user);
+    public List<UserTest> selectLike(UserTest user) {
+        return userTestMapper.selectLike(user);
     }
 
 }

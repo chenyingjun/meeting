@@ -2,9 +2,9 @@
 
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chenyingjun.meeting.mapper.UserMapper">
+<mapper namespace="com.chenyingjun.meeting.mapper.UserTestMapper">
 
-    <resultMap id="BaseResultMap" type="com.chenyingjun.meeting.entity.User">
+    <resultMap id="BaseResultMap" type="com.chenyingjun.meeting.entity.UserTest">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
@@ -15,10 +15,10 @@
     </sql>
 
     <!-- 模糊查询信息 -->
-    <select id="selectLike" parameterType="com.chenyingjun.meeting.entity.User" resultMap="BaseResultMap">
+    <select id="selectLike" parameterType="com.chenyingjun.meeting.entity.UserTest" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from user
+        from user_test
         <where>
             <if test="username != null">
                 username like #{username, jdbcType=VARCHAR}

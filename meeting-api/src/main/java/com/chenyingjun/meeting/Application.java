@@ -1,6 +1,5 @@
 package com.chenyingjun.meeting;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.ImportResource;
  * @version 2017年05月08日 chenyingjun
  */
 @SpringBootApplication
-@MapperScan("com.chenyingjun.meeting.mapper")
 @ImportResource(value = { "classpath:applicationContext*.xml" })
 public class Application {
 

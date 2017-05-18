@@ -1,6 +1,6 @@
 package com.chenyingjun.meeting.mapper;
 
-import com.chenyingjun.meeting.entity.User;
+import com.chenyingjun.meeting.entity.UserTest;
 import com.chenyingjun.meeting.utils.MyMapper;
 
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
  * @version 2017年05月05日
  * @since 1.0
  */
-public interface UserMapper extends MyMapper<User> {
+public interface UserTestMapper extends MyMapper<UserTest> {
 
     /**
      * 模糊查询用户信息
      * @param user 用户信息
      * @return
      */
-    List<User> selectLike(User user);
+    List<UserTest> selectLike(UserTest user);
 
 
 }

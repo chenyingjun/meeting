@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
  * @version 2017年05月08日 chenyingjun
  */
 @SpringBootApplication
-@MapperScan("com.chenyingjun.meeting.mapper")
+@MapperScan("mybatis")
 @ImportResource(value = { "classpath:applicationContext*.xml" })
 public class Application {
 
