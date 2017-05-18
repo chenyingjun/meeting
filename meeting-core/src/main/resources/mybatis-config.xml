@@ -34,15 +34,6 @@
 		<setting name="logImpl" value="SLF4J" />
 	</settings>
 
-	<!-- mybatis分页插件 -->
-	<!--<plugins>-->
-		<!--<plugin interceptor="com.github.pagehelper.PageHelper">-->
-			<!--<property name="dialect" value="mysql" />-->
-			<!--<property name="pageSizeZero" value="true" />-->
-			<!--<property name="reasonable" value="true" />-->
-		<!--</plugin>-->
-	<!--</plugins>-->
-
 	<!-- 映射文件的配置 -->
 	<mappers>
 		<mapper resource="mybatis/UserTestMapper.xml" />
