@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Api(description = "用户相关api")
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class UserController {
             @ApiImplicitParam(dataType = "UserTest", name = "user", value = "用户信息", required = true)
     })
     @RequestMapping(value = "/{id}",method = RequestMethod.POST)
-    public UserTest insert(@PathVariable Integer id, @RequestBody UserTest user){
+    public UserTest addUser(@PathVariable Integer id, @RequestBody UserTest user){
 
         System.out.println("id:"+id+", user:"+user);
         user.setId(id);
@@ -57,14 +57,14 @@ public class UserController {
 
     @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public PageInfo<UserTest> selectPage(UserTest user, @RequestParam int pageNum, @RequestParam int pageSize){
+    public PageInfo<UserTest> getPage(UserTest user, @RequestParam int pageNum, @RequestParam int pageSize){
         List<UserTest> userList = userService.selectPage(user, pageNum, pageSize);
         return new PageInfo<>(userList);
     }
 
     @ApiOperation(value="模糊查询用户信息", notes="模糊查询用户信息")
-    @RequestMapping(value = "/select/like", method = RequestMethod.POST)
-    public List<UserTest> selectLike(UserTest user){
+    @RequestMapping(value = "/like", method = RequestMethod.GET)
+    public List<UserTest> like(UserTest user){
         List<UserTest> userList = userService.selectLike(user);
         return userList;
     }
