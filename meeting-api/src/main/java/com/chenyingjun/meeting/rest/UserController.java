@@ -37,12 +37,10 @@ public class UserController {
             @ApiImplicitParam(dataType = "java.lang.Long", name = "id", value = "id", required = true, paramType = "path"),
             @ApiImplicitParam(dataType = "UserTest", name = "user", value = "用户信息", required = true)
     })
-    @RequestMapping(value = "/{id}",method = RequestMethod.POST)
-    public UserTest addUser(@PathVariable Integer id, @RequestBody UserTest user){
+    @RequestMapping(value = "",method = RequestMethod.POST)
+    public UserTest saveUser(@RequestBody UserTest user){
 
-        System.out.println("id:"+id+", user:"+user);
-        user.setId(id);
-
+        System.out.println("user:"+user);
         return user;
     }
 
