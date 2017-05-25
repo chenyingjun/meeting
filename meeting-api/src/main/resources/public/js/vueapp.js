@@ -1,13 +1,11 @@
-// 这是我们的Model
-var exampleData = {
-    message: 'Hello World!'
-}
-
-// 创建一个 Vue 实例或 "ViewModel"
-// 它连接 View 与 Model
 new Vue({
     el: '#app',
-    data: {
-        message:'Hello World!'
+    data: function() {
+        return {
+            visible: false,
+            radio3: '上海',
+            radio4: '上海',
+            radio5: '上海'
+        }
     }
 })
