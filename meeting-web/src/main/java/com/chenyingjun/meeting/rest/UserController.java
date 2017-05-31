@@ -51,14 +51,14 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserTest getUser(@PathVariable Integer id){
         logger.info("--------------------------getUser");
-        return userService.selectByPrimaryKey(id);
+        return userService.getUserTestByPrimaryKey(id);
     }
 
 
     @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public PageInfo<UserTest> selectPage(UserTest user, @RequestParam int pageNum, @RequestParam int pageSize){
-        List<UserTest> userList = userService.selectPage(user, pageNum, pageSize);
+        List<UserTest> userList = userService.page(user, pageNum, pageSize);
         return new PageInfo<>(userList);
     }
 

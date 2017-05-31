@@ -6,7 +6,10 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 测试用户信息服务
@@ -20,7 +23,7 @@ public class UserService {
     @Autowired
     private UserTestMapper userTestMapper;
 
-    public UserTest selectByPrimaryKey(Integer id){
+    public UserTest getUserTestByPrimaryKey(Integer id){
         UserTest user = new UserTest();
         user.setUsername("333bb");
         List<UserTest> userList = userTestMapper.select(user);
@@ -37,7 +40,7 @@ public class UserService {
      * @param pageSize 每页数量
      * @return
      */
-    public List<UserTest> selectPage(UserTest user, int pageNum, int pageSize) {
+    public List<UserTest> page(UserTest user, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return userTestMapper.select(user);
     }
@@ -47,7 +50,7 @@ public class UserService {
      * @param user 查询用户信息
      * @return
      */
-    public List<UserTest> selectLike(UserTest user) {
+    public List<UserTest> like(UserTest user) {
         return userTestMapper.selectLike(user);
     }
 
