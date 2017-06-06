@@ -11,6 +11,7 @@
 	<description>Spring公共配置 </description>
 
 	<import resource="classpath*:/applicationContext-dao.xml"/>
-
 	<context:property-placeholder ignore-resource-not-found="true" location="classpath*:/jdbc.properties" />
+
+	<import resource="classpath*:/applicationContext-redis.xml"/>
 </beans>

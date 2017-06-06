@@ -75,4 +75,29 @@ public class UserController {
         System.out.println("delete user:"+id);
         return "OK";
     }
+
+    @ApiOperation(value="保存redis信息", notes="保存redis信息")
+    @RequestMapping(value = "/redis", method = RequestMethod.POST)
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "keys", value = "redisKeys", dataType = "java.lang.String"),
+            @ApiImplicitParam(paramType = "query", name = "value", value = "redisValue", dataType = "java.lang.String"),})
+    public String saveRedis(String keys, String value){
+        userService.saveRedis(keys, value);
+        return "OK";
+    }
+
+    @ApiOperation(value="获取redis信息", notes="根据keys获取redis信息")
+    @ApiImplicitParam(name = "keys",value = "keys", dataType = "java.lang.String", paramType = "path")
+    @RequestMapping(value = "/redis/{keys}", method = RequestMethod.GET)
+    public String getRedis(@PathVariable String keys){
+        return userService.getRedis(keys);
+    }
+
+    @ApiOperation(value="删除redis信息", notes="根据keys删除redis信息")
+    @ApiImplicitParam(name = "keys",value = "keys", dataType = "java.lang.String", paramType = "path")
+    @RequestMapping(value = "/redis/{keys}", method = RequestMethod.DELETE)
+    public String removeRedis(@PathVariable String keys){
+        userService.removeRedis(keys);
+        return "OK";
+    }
 }
