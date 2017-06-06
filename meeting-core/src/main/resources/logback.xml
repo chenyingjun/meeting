@@ -13,7 +13,7 @@
 			<pattern>${ENCODER_PATTERN}</pattern>
 		</encoder>
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>INFO</level>
+			<level>DEBUG</level>
 		</filter>
 	</appender>
 
@@ -50,6 +50,7 @@
 		</filter>
 	</appender>
 
+	<!-- INFO     DEBUG:需打印sql时 -->
 	<root level="INFO">
 		<appender-ref ref="console" />
 		<appender-ref ref="INFO_FILE" />
