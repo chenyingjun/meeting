@@ -13,8 +13,10 @@ import javax.persistence.*;
  */
 @Data
 public class BaseEntity {
+
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator="UUID")
+//    @GeneratedValue(strategy=GenerationType.IDENTITY[,generator="Mysql"])
     private String id;
 }
