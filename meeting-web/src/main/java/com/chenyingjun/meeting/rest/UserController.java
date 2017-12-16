@@ -38,7 +38,7 @@ public class UserController {
             @ApiImplicitParam(dataType = "UserTest", name = "user", value = "用户信息", required = true)
     })
     @RequestMapping(value = "/{id}",method = RequestMethod.POST)
-    public UserTest insert(@PathVariable Integer id, @RequestBody UserTest user){
+    public UserTest insert(@PathVariable String id, @RequestBody UserTest user){
 
         System.out.println("id:"+id+", user:"+user);
         user.setId(id);
