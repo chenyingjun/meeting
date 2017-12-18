@@ -27,7 +27,7 @@ public class UserService {
 
     String keys = "chenyingjun";
 
-    public UserTest getUserTestByPrimaryKey(String id){
+    public UserTest getUserTestByPrimaryKey(Integer id){
         UserTest user = new UserTest();
         user.setUsername("333bb");
         List<UserTest> userList = userTestMapper.select(user);

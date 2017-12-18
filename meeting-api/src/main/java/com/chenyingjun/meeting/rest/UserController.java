@@ -45,9 +45,9 @@ public class UserController {
     }
 
     @ApiOperation(value="获取指定id用户详细信息", notes="根据user的id来获取用户详细信息")
-    @ApiImplicitParam(name = "id",value = "用户id", dataType = "String", paramType = "path")
+    @ApiImplicitParam(name = "id",value = "用户id", dataType = "Integer", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public UserTest getUser(@PathVariable String id){
+    public UserTest getUser(@PathVariable Integer id){
         logger.info("--------------------------getUser");
         return userService.getUserTestByPrimaryKey(id);
     }
