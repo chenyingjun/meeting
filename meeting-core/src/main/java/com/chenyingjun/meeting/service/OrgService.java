@@ -1,11 +1,6 @@
-/******************************************************************************
- * Copyright (C) 2017 ShenZhen ComTop Information Technology Co.,Ltd
- * All Rights Reserved.
- * 本软件为深圳康拓普开发研制。未经本公司正式书面同意，其他任何个人、团体不得使用、
- * 复制、修改或发布本软件.
- ******************************************************************************/
 package com.chenyingjun.meeting.service;
 
+import com.chenyingjun.meeting.example.OrgExample;
 import com.chenyingjun.meeting.constant.CommonConsts;
 import com.chenyingjun.meeting.entity.Org;
 import com.chenyingjun.meeting.mapper.OrgMapper;
@@ -43,7 +38,14 @@ public class OrgService {
      */
     public List<Org> page(Org org, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return orgMapper.select(org);
+        OrgExample orgExample = new OrgExample();
+        OrgExample.Criteria criteria = orgExample.createCriteria();
+        String name = org.getName();
+        if (StringUtils.isNotEmpty(name)) {
+
+            criteria.andNameLike("%" + name + "%");
+        }
+        return orgMapper.selectByExample(orgExample);
     }
 
     /**
