@@ -42,9 +42,13 @@ public class OrgService {
         OrgExample.Criteria criteria = orgExample.createCriteria();
         String name = org.getName();
         if (StringUtils.isNotEmpty(name)) {
-
             criteria.andNameLike("%" + name + "%");
         }
+        Integer status = org.getStatus();
+        if (null != status) {
+            criteria.andStatusEqualTo(status);
+        }
+
         return orgMapper.selectByExample(orgExample);
     }
 
