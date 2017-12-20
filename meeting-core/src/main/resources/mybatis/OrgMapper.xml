@@ -11,4 +11,7 @@
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+  <sql id="Base_Column_List">
+    id, name, full_name, parent_id, parent_ids, create_date, update_date, status
+  </sql>
 </mapper>

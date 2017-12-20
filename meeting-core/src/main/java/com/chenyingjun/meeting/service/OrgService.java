@@ -6,7 +6,9 @@ import com.chenyingjun.meeting.entity.Org;
 import com.chenyingjun.meeting.mapper.OrgMapper;
 import com.chenyingjun.meeting.utils.StringUtils;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -34,10 +36,20 @@ public class OrgService {
      * @param org 查询组织信息
      * @param pageNum 当前页码
      * @param pageSize 每页数量
-     * @return
+     * @return 组织page
      */
-    public List<Org> page(Org org, int pageNum, int pageSize) {
+    public PageInfo<Org> page(Org org, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
+        List<Org> list = this.list(org);
+        return new PageInfo<> (list);
+    }
+
+    /**
+     * 查询组织列表
+     * @param org 查询组织信息
+     * @return 组织信息列表
+     */
+    public List<Org> list(Org org) {
         OrgExample orgExample = new OrgExample();
         OrgExample.Criteria criteria = orgExample.createCriteria();
         String name = org.getName();
@@ -58,9 +70,7 @@ public class OrgService {
      * @return 组织信息
      */
     public Org selectOne(String id) {
-        Org org = new Org();
-        org.setId(id);
-        return orgMapper.selectOne(org);
+        return orgMapper.selectByPrimaryKey(id);
     }
 
     /**

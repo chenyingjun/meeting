@@ -1,12 +1,18 @@
 package com.chenyingjun.meeting.service;
 
+import com.chenyingjun.meeting.entity.User;
 import com.chenyingjun.meeting.entity.UserTest;
+import com.chenyingjun.meeting.example.UserExample;
+import com.chenyingjun.meeting.mapper.UserMapper;
 import com.chenyingjun.meeting.mapper.UserTestMapper;
+import com.chenyingjun.meeting.utils.StringUtils;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -20,21 +26,15 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserTestMapper userTestMapper;
+    private UserMapper userMapper;
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     String keys = "chenyingjun";
 
-    public UserTest getUserTestByPrimaryKey(Integer id){
-        UserTest user = new UserTest();
-        user.setUsername("333bb");
-        List<UserTest> userList = userTestMapper.select(user);
-        for (UserTest user1 : userList) {
-            System.out.println("---------------------------" + user1.getPassword() + "--" + user1.getUsername());
-        }
-        return userTestMapper.selectByPrimaryKey(id);
+    public User getUserByPrimaryKey(String id){
+        return userMapper.selectByPrimaryKey(id);
     }
 
     /**
@@ -42,20 +42,35 @@ public class UserService {
      * @param user 查询用户信息
      * @param pageNum 当前页码
      * @param pageSize 每页数量
-     * @return
+     * @return 用户page
      */
-    public List<UserTest> page(UserTest user, int pageNum, int pageSize) {
+    public PageInfo<User> page(User user, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return userTestMapper.select(user);
+        List<User> list = list(user);
+        return new PageInfo<> (list);
     }
 
     /**
-     * 模糊查询用户信息
-     * @param user 查询用户信息
-     * @return
+     * 查询用户信息
+     * @param user 查询条件
+     * @return 用户信息列表
      */
-    public List<UserTest> like(UserTest user) {
-        return userTestMapper.selectLike(user);
+    public List<User> list(User user) {
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        String name = user.getName();
+        String account = user.getAccount();
+        Integer status = user.getStatus();
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.andNameLike("%" + name + "%");
+        }
+        if (StringUtils.isNotEmpty(account)) {
+            criteria.andAccountLike("%" + account + "%");
+        }
+        if (null != status) {
+
+        }
+        return userMapper.selectByExample(example);
     }
 
     /**

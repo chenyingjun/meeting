@@ -55,8 +55,7 @@ public class OrgController {
     @ApiOperation(value="获取组织详细信息列表", notes="获取组织详细信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public PageInfo<Org> page(Org org, @RequestParam int pageNum, @RequestParam int pageSize){
-        List<Org> userList = orgService.page(org, pageNum, pageSize);
-        return new PageInfo<>(userList);
+        return orgService.page(org, pageNum, pageSize);
     }
 
 

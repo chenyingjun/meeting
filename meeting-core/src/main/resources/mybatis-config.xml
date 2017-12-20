@@ -36,7 +36,7 @@
 
 	<!-- 映射文件的配置 -->
 	<mappers>
-		<mapper resource="mybatis/UserTestMapper.xml" />
-		<mapper resource="mybatis/OrgMapper.xml" />
+		<!--<mapper resource="mybatis/UserTestMapper.xml" />-->
+		<mapper resource="mybatis/*.xml" />
 	</mappers>
 </configuration>

@@ -1,5 +1,6 @@
 package com.chenyingjun.meeting.rest;
 
+import com.chenyingjun.meeting.entity.User;
 import com.chenyingjun.meeting.entity.UserTest;
 import com.chenyingjun.meeting.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -12,8 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.List;
 
 /**
  * 用户相关api
@@ -45,26 +44,18 @@ public class UserController {
     }
 
     @ApiOperation(value="获取指定id用户详细信息", notes="根据user的id来获取用户详细信息")
-    @ApiImplicitParam(name = "id",value = "用户id", dataType = "Integer", paramType = "path")
+    @ApiImplicitParam(name = "id",value = "用户id", dataType = "String", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public UserTest getUser(@PathVariable Integer id){
+    public User getUser(@PathVariable String id){
         logger.info("--------------------------getUser");
-        return userService.getUserTestByPrimaryKey(id);
+        return userService.getUserByPrimaryKey(id);
     }
 
 
     @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public PageInfo<UserTest> page(UserTest user, @RequestParam int pageNum, @RequestParam int pageSize){
-        List<UserTest> userList = userService.page(user, pageNum, pageSize);
-        return new PageInfo<>(userList);
-    }
-
-    @ApiOperation(value="模糊查询用户信息", notes="模糊查询用户信息")
-    @RequestMapping(value = "/like", method = RequestMethod.GET)
-    public List<UserTest> like(UserTest user){
-        List<UserTest> userList = userService.like(user);
-        return userList;
+    public PageInfo<User> page(User user, @RequestParam int pageNum, @RequestParam int pageSize){
+        return userService.page(user, pageNum, pageSize);
     }
 
     @ApiIgnore
