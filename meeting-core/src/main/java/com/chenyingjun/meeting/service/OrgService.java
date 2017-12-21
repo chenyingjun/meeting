@@ -8,7 +8,6 @@ import com.chenyingjun.meeting.utils.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -87,14 +86,14 @@ public class OrgService {
      * 新增或更新组织信息
      * @param org 组织信息
      */
-    public void save(Org org) {
+    public int save(Org org) {
         if (null == org) {
-            return;
+            return 0;
         }
         if (StringUtils.isNotEmpty(org.getId())) {
-            updateByPrimaryKeySelective(org);
+            return updateByPrimaryKeySelective(org);
         } else {
-            insert(org);
+            return insert(org);
         }
 
     }
@@ -102,31 +101,31 @@ public class OrgService {
      * 新增组织信息
      * @param org 组织信息
      */
-    public void insert(Org org) {
+    public int insert(Org org) {
         org.setCreateDate(new Date());
-        orgMapper.insert(org);
+        return orgMapper.insert(org);
     }
 
     /**
      * 选 择性更新组织信息
      * @param org 组织信息
      */
-    public void updateByPrimaryKeySelective(Org org) {
+    public int updateByPrimaryKeySelective(Org org) {
         org.setUpdateDate(new Date());
-        orgMapper.updateByPrimaryKeySelective(org);
+        return orgMapper.updateByPrimaryKeySelective(org);
     }
 
     /**
      * 逻辑删除
      * @param id 被删除的组织主键
      */
-    public void delete(String id) {
+    public int delete(String id) {
         if (StringUtils.isEmptyStr(id)) {
-            return;
+            return 0;
         }
         Org org = new Org();
         org.setId(id);
-        org.setStatus(CommonConsts.STATUS_DELETE);
+        org.setStatus(CommonConsts.DEL_FLAG_DELETE);
         updateByPrimaryKeySelective(org);
     }
 }
