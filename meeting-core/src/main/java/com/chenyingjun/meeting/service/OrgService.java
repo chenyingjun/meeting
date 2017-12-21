@@ -55,10 +55,7 @@ public class OrgService {
         if (StringUtils.isNotEmpty(name)) {
             criteria.andNameLike("%" + name + "%");
         }
-        Integer status = org.getStatus();
-        if (null != status) {
-            criteria.andStatusEqualTo(status);
-        }
+        criteria.andStatusEqualTo(CommonConsts.DEL_FLAG_NORMAL);
 
         return orgMapper.selectByExample(orgExample);
     }
@@ -125,7 +122,7 @@ public class OrgService {
         }
         Org org = new Org();
         org.setId(id);
-        org.setStatus(CommonConsts.DEL_FLAG_DELETE);
-        updateByPrimaryKeySelective(org);
+        org.setDelFlag(CommonConsts.DEL_FLAG_DELETE);
+        return updateByPrimaryKeySelective(org);
     }
 }

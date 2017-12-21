@@ -46,11 +46,6 @@ public class Meeting extends BaseEntity {
     private Date updateDate;
 
     /**
-     * 是否删除   0.已删除；1.可用
-     */
-    private Integer delFlag;
-
-    /**
      *参与部门，用英文,号隔开
      */
     private String orgs;

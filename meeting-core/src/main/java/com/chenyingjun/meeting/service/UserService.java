@@ -1,10 +1,9 @@
 package com.chenyingjun.meeting.service;
 
+import com.chenyingjun.meeting.constant.CommonConsts;
 import com.chenyingjun.meeting.entity.User;
-import com.chenyingjun.meeting.entity.UserTest;
 import com.chenyingjun.meeting.example.UserExample;
 import com.chenyingjun.meeting.mapper.UserMapper;
-import com.chenyingjun.meeting.mapper.UserTestMapper;
 import com.chenyingjun.meeting.utils.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -60,16 +58,13 @@ public class UserService {
         UserExample.Criteria criteria = example.createCriteria();
         String name = user.getName();
         String account = user.getAccount();
-        Integer status = user.getStatus();
         if (StringUtils.isNotEmpty(name)) {
             criteria.andNameLike("%" + name + "%");
         }
         if (StringUtils.isNotEmpty(account)) {
             criteria.andAccountLike("%" + account + "%");
         }
-        if (null != status) {
-
-        }
+        criteria.andStatusEqualTo(CommonConsts.DEL_FLAG_NORMAL);
         return userMapper.selectByExample(example);
     }
 

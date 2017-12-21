@@ -6,7 +6,7 @@ CREATE TABLE `org` (
   `parent_ids` varchar(400) DEFAULT NULL COMMENT '父主健集',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  `status` int(2) DEFAULT NULL COMMENT '状态   0.禁用；1.可用',
+  `del_flag` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
@@ -15,7 +15,7 @@ CREATE TABLE `user_test` (
   `id` int(11) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `status` varchar(2) DEFAULT NULL COMMENT '状态值，用于activiti测试',
+  `del_flag` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
@@ -32,10 +32,10 @@ CREATE TABLE `user` (
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  `status` int(2) DEFAULT NULL COMMENT '状态   0.禁用；1.可用',
+  `del_flag` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_user_account` (`account`),
-  KEY `index_user_status` (`status`)
+  KEY `index_user_status` (`del_flag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 CREATE TABLE `user_org` (

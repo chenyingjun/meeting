@@ -25,14 +25,3 @@ CREATE TABLE `mt_meeting_room` (
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-
-
-CREATE TABLE `mt_meeting_room` (
-  `id` varchar(40) NOT NULL COMMENT '会议室主健',
-  `name` varchar(400) DEFAULT NULL COMMENT '会议室名称',
-  `seat_number` int(11) NOT NULL COMMENT '会议室座位数',
-  `del_flag` int(1) NOT NULL DEFAULT '0',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
