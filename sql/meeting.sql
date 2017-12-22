@@ -25,3 +25,17 @@ CREATE TABLE `mt_meeting_room` (
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+CREATE TABLE `mt_meeting_user` (
+  `id` varchar(40) NOT NULL,
+  `meeting_id` varchar(40) NOT NULL,
+  `user_id` varchar(40) NOT NULL,
+  `status` int(1) DEFAULT '1' COMMENT '状态  1.已邀请；2.已签到；3.请假；',
+  PRIMARY KEY (`id`),
+  KEY `fk_meetingUser_meetingId` (`meeting_id`),
+  KEY `fk_meetingUser_userId` (`user_id`),
+  KEY `index_meetingUser_status` (`status`),
+  CONSTRAINT `fk_meetingUser_meetingId` FOREIGN KEY (`meeting_id`) REFERENCES `mt_meeting` (`id`),
+  CONSTRAINT `fk_meetingUser_userId` FOREIGN KEY (`user_id`) REFERENCES `mt_meeting` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

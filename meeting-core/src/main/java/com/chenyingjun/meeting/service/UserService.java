@@ -5,14 +5,11 @@ import com.chenyingjun.meeting.entity.User;
 import com.chenyingjun.meeting.example.UserExample;
 import com.chenyingjun.meeting.mapper.UserMapper;
 import com.chenyingjun.meeting.utils.StringUtils;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * 测试用户信息服务
@@ -22,7 +19,7 @@ import java.util.List;
  * @since 1.0
  */
 @Service
-public class UserService {
+public class UserService extends BaseService<User>{
     @Autowired
     private UserMapper userMapper;
 
@@ -35,25 +32,7 @@ public class UserService {
         return userMapper.selectByPrimaryKey(id);
     }
 
-    /**
-     * 查询用户列表
-     * @param user 查询用户信息
-     * @param pageNum 当前页码
-     * @param pageSize 每页数量
-     * @return 用户page
-     */
     public PageInfo<User> page(User user, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<User> list = list(user);
-        return new PageInfo<> (list);
-    }
-
-    /**
-     * 查询用户信息
-     * @param user 查询条件
-     * @return 用户信息列表
-     */
-    public List<User> list(User user) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         String name = user.getName();
@@ -64,8 +43,8 @@ public class UserService {
         if (StringUtils.isNotEmpty(account)) {
             criteria.andAccountLike("%" + account + "%");
         }
-        criteria.andStatusEqualTo(CommonConsts.DEL_FLAG_NORMAL);
-        return userMapper.selectByExample(example);
+        criteria.andDelFlagEqualTo(CommonConsts.DEL_FLAG_NORMAL);
+        return this.basePageByExample(example, pageNum, pageSize);
     }
 
     /**

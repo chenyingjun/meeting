@@ -1,9 +1,7 @@
 package com.chenyingjun.meeting.rest;
 
 import com.chenyingjun.meeting.entity.Org;
-import com.chenyingjun.meeting.entity.UserTest;
 import com.chenyingjun.meeting.service.OrgService;
-import com.chenyingjun.meeting.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,9 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.List;
 
 /**
  * 组织相关api
@@ -48,7 +43,7 @@ public class OrgController {
     @ApiImplicitParam(name = "id",value = "组织id", dataType = "String", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Org getOne(@PathVariable String id){
-        return orgService.selectOne(id);
+        return orgService.baseSelectByPrimaryKey(id);
     }
 
 

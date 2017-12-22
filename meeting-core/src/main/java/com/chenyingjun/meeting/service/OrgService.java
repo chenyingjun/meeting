@@ -1,11 +1,10 @@
 package com.chenyingjun.meeting.service;
 
-import com.chenyingjun.meeting.example.OrgExample;
 import com.chenyingjun.meeting.constant.CommonConsts;
 import com.chenyingjun.meeting.entity.Org;
+import com.chenyingjun.meeting.example.OrgExample;
 import com.chenyingjun.meeting.mapper.OrgMapper;
 import com.chenyingjun.meeting.utils.StringUtils;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import java.util.List;
  * @since 1.0
  */
 @Service
-public class OrgService {
+public class OrgService extends BaseService<Org> {
 
     /**
      * 组织
@@ -29,55 +28,23 @@ public class OrgService {
     @Autowired
     private OrgMapper orgMapper;
 
-
     /**
-     * 查询组织列表
-     * @param org 查询组织信息
+     * 分页查询
+     * @param org 查询信息
      * @param pageNum 当前页码
      * @param pageSize 每页数量
-     * @return 组织page
+     * @return 组织列表
      */
     public PageInfo<Org> page(Org org, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Org> list = this.list(org);
-        return new PageInfo<> (list);
-    }
-
-    /**
-     * 查询组织列表
-     * @param org 查询组织信息
-     * @return 组织信息列表
-     */
-    public List<Org> list(Org org) {
-        OrgExample orgExample = new OrgExample();
-        OrgExample.Criteria criteria = orgExample.createCriteria();
+        OrgExample example = new OrgExample();
+        OrgExample.Criteria criteria = example.createCriteria();
         String name = org.getName();
         if (StringUtils.isNotEmpty(name)) {
             criteria.andNameLike("%" + name + "%");
         }
-        criteria.andStatusEqualTo(CommonConsts.DEL_FLAG_NORMAL);
-
-        return orgMapper.selectByExample(orgExample);
+        criteria.andDelFlagEqualTo(CommonConsts.DEL_FLAG_NORMAL);
+        return this.basePageByExample(example, pageNum, pageSize);
     }
-
-    /**
-     * 根据主键查询
-     * @param id 主键
-     * @return 组织信息
-     */
-    public Org selectOne(String id) {
-        return orgMapper.selectByPrimaryKey(id);
-    }
-
-    /**
-     * 根据主体查询信息
-     * @param org 组织主体
-     * @return 组织信息
-     */
-    public Org selectOne(Org org) {
-        return orgMapper.selectOne(org);
-    }
-
 
     /**
      * 新增或更新组织信息
@@ -87,29 +54,13 @@ public class OrgService {
         if (null == org) {
             return 0;
         }
+        org.setUpdateDate(new Date());
         if (StringUtils.isNotEmpty(org.getId())) {
-            return updateByPrimaryKeySelective(org);
+            return baseUpdateByPrimaryKeySelective(org);
         } else {
-            return insert(org);
+            return baseInsert(org);
         }
 
-    }
-    /**
-     * 新增组织信息
-     * @param org 组织信息
-     */
-    public int insert(Org org) {
-        org.setCreateDate(new Date());
-        return orgMapper.insert(org);
-    }
-
-    /**
-     * 选 择性更新组织信息
-     * @param org 组织信息
-     */
-    public int updateByPrimaryKeySelective(Org org) {
-        org.setUpdateDate(new Date());
-        return orgMapper.updateByPrimaryKeySelective(org);
     }
 
     /**
@@ -123,6 +74,7 @@ public class OrgService {
         Org org = new Org();
         org.setId(id);
         org.setDelFlag(CommonConsts.DEL_FLAG_DELETE);
-        return updateByPrimaryKeySelective(org);
+        org.setUpdateDate(new Date());
+        return baseUpdateByPrimaryKeySelective(org);
     }
 }

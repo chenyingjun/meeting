@@ -7,7 +7,8 @@ CREATE TABLE `org` (
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `del_flag` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `index_org_delFlag` (`del_flag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 
@@ -35,8 +36,9 @@ CREATE TABLE `user` (
   `del_flag` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_user_account` (`account`),
-  KEY `index_user_status` (`del_flag`)
+  KEY `index_user_delFlag` (`del_flag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
 
 CREATE TABLE `user_org` (
   `user_id` varchar(40) NOT NULL COMMENT '用户主键',

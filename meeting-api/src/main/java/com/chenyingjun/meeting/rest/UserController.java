@@ -48,7 +48,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable String id){
         logger.info("--------------------------getUser");
-        return userService.getUserByPrimaryKey(id);
+        return userService.baseSelectByPrimaryKey(id);
     }
 
 
