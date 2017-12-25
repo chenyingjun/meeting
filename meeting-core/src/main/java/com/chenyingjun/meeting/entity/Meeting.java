@@ -48,5 +48,5 @@ public class Meeting extends BaseEntity {
     /**
      *参与部门，用英文,号隔开
      */
-    private String orgs;
+    private String orgIds;
 }

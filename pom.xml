@@ -30,6 +30,8 @@
         <jedis.version>2.7.2</jedis.version>
         <spring.data.redis.version>1.7.2.RELEASE</spring.data.redis.version>
         <spring.session.version>1.0.2.RELEASE</spring.session.version>
+        <guava.version>23.0</guava.version>
+        <lang3.version>3.4</lang3.version>
     </properties>
 
     <dependencies>
@@ -51,6 +53,20 @@
             <version>${jsqlparser.version}</version>
         </dependency>
         <!-- 分页插件结束 -->
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
 
         <!-- jedis -->
         <dependency>
