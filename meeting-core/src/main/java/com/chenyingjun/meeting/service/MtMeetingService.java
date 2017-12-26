@@ -1,15 +1,17 @@
 package com.chenyingjun.meeting.service;
 
 import com.chenyingjun.meeting.constant.CommonConsts;
-import com.chenyingjun.meeting.dto.MeetingFind;
-import com.chenyingjun.meeting.entity.Meeting;
+import com.chenyingjun.meeting.dto.MtMeetingFind;
+import com.chenyingjun.meeting.entity.MtMeeting;
 import com.chenyingjun.meeting.example.MeetingExample;
 import com.chenyingjun.meeting.mapper.MeetingMapper;
 import com.chenyingjun.meeting.utils.Collections;
-import com.chenyingjun.meeting.utils.StringUtils;
+import com.chenyingjun.meeting.utils.DateUtil;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -20,7 +22,8 @@ import java.util.List;
  * @version 2017年12月25日
  * @since 1.0
  */
-public class MeetingService extends BaseService<Meeting>{
+@Service
+public class MtMeetingService extends BaseService<MtMeeting>{
 
     /**
      * 会议dao
@@ -34,7 +37,7 @@ public class MeetingService extends BaseService<Meeting>{
      * @param pageSize 每页数量
      * @return 组织列表
      */
-    public PageInfo<Meeting> page(MeetingFind find, int pageNum, int pageSize) {
+    public PageInfo<MtMeeting> page(MtMeetingFind find, int pageNum, int pageSize) {
         MeetingExample example = new MeetingExample();
         MeetingExample.Criteria criteria = example.createCriteria();
         String name = find.getMeetingName();
@@ -46,12 +49,19 @@ public class MeetingService extends BaseService<Meeting>{
             List<String> meetingRoomIdList = Lists.newArrayList(meetingRoomIds.split(","));
             criteria.andMeetingRoomIdIn(meetingRoomIdList);
         }
-        List<Integer> statusList = find.getMeetingStatusList();
-        if (Collections.isNotEmpty(statusList)) {
+        Integer[] status = find.getMeetingStatus();
+        if (null != status && status.length > 0) {
+            List<Integer> statusList = Lists.newArrayList(status);
             criteria.andMeetingStatusIn(statusList);
         }
         String startTime = find.getStartTime();
-
+        if (StringUtils.isNotBlank(startTime)) {
+            criteria.andEndTimeGreaterThanOrEqualTo(DateUtil.fomatDate(startTime));
+        }
+        String endTime = find.getEndTime();
+        if (StringUtils.isNotBlank(endTime)) {
+            criteria.andStartTimeLessThanOrEqualTo(DateUtil.fomatDate(endTime));
+        }
         criteria.andDelFlagEqualTo(CommonConsts.DEL_FLAG_NORMAL);
         return this.basePageByExample(example, pageNum, pageSize);
     }

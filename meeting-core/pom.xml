@@ -91,6 +91,12 @@
         </dependency>
         <!-- generator自动生成代码结束 -->
 
+        <!-- 参数验证 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <!-- 参数验证结束 -->
     </dependencies>
 
     <build>

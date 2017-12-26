@@ -1,5 +1,6 @@
 package com.chenyingjun.meeting.dto;
 
+import com.chenyingjun.meeting.validator.NotXss;
 import lombok.Data;
 
 /**
@@ -15,15 +16,18 @@ public class MeetingRoomFind {
     /**
      * 会议室名称
      */
+    @NotXss
     private String name;
 
     /**
      * 最小座位数
      */
+    @NotXss
     private Integer minSeatNumber;
 
     /**
      * 最大座位数
      */
+    @NotXss
     private Integer maxSeatNumber;
 }

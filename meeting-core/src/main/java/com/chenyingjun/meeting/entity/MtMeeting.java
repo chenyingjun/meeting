@@ -8,7 +8,7 @@ import java.util.Date;
  * 会议信息
  */
 @Data
-public class Meeting extends BaseEntity {
+public class MtMeeting extends BaseEntity {
 
     /**
      * 会议名称
