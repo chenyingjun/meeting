@@ -50,8 +50,4 @@ public class MtMeeting extends BaseEntity {
      */
     private String orgIds;
 
-    /**
-     * 会议室名称
-     */
-//    private String meetingRoomName;
 }

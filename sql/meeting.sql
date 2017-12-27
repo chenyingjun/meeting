@@ -3,7 +3,7 @@ CREATE TABLE `mt_meeting` (
   `meeting_name` varchar(400) DEFAULT NULL COMMENT '会议名称',
   `meeting_status` int(2) DEFAULT '1' COMMENT '会议状态',
   `meeting_room_id` varchar(40) NOT NULL COMMENT '会议室主键',
-  `orgs` text COMMENT '参与部门，用英文,号隔开',
+  `org_ids` text COMMENT '参与部门，用英文,号隔开',
   `start_time` datetime NOT NULL COMMENT '开始时间',
   `end_time` datetime NOT NULL COMMENT '结束时间',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
