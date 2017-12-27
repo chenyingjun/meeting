@@ -37,9 +37,9 @@
 	<!-- 映射文件的配置 -->
 	<mappers>
 		<!--<mapper resource="mybatis/UserTestMapper.xml" />-->
-		<mapper resource="mybatis/MeetingMapper.xml" />
-		<mapper resource="mybatis/MeetingRoomMapper.xml" />
-		<mapper resource="mybatis/MeetingUserMapper.xml" />
+		<mapper resource="mybatis/MtMeetingMapper.xml" />
+		<mapper resource="mybatis/MtMeetingRoomMapper.xml" />
+		<mapper resource="mybatis/MtMeetingUserMapper.xml" />
 		<mapper resource="mybatis/OrgMapper.xml" />
 		<mapper resource="mybatis/UserMapper.xml" />
 		<mapper resource="mybatis/UserOrgMapper.xml" />

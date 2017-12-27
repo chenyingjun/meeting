@@ -3,9 +3,8 @@ package com.chenyingjun.meeting.service;
 import com.chenyingjun.meeting.constant.CommonConsts;
 import com.chenyingjun.meeting.dto.MtMeetingFind;
 import com.chenyingjun.meeting.entity.MtMeeting;
-import com.chenyingjun.meeting.example.MeetingExample;
-import com.chenyingjun.meeting.mapper.MeetingMapper;
-import com.chenyingjun.meeting.utils.Collections;
+import com.chenyingjun.meeting.example.MtMeetingExample;
+import com.chenyingjun.meeting.mapper.MtMeetingMapper;
 import com.chenyingjun.meeting.utils.DateUtil;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
@@ -29,7 +28,7 @@ public class MtMeetingService extends BaseService<MtMeeting>{
      * 会议dao
      */
     @Autowired
-    private MeetingMapper meetingMapper;
+    private MtMeetingMapper meetingMapper;
     /**
      * 分页查询
      * @param find 查询信息
@@ -38,8 +37,8 @@ public class MtMeetingService extends BaseService<MtMeeting>{
      * @return 组织列表
      */
     public PageInfo<MtMeeting> page(MtMeetingFind find, int pageNum, int pageSize) {
-        MeetingExample example = new MeetingExample();
-        MeetingExample.Criteria criteria = example.createCriteria();
+        MtMeetingExample example = new MtMeetingExample();
+        MtMeetingExample.Criteria criteria = example.createCriteria();
         String name = find.getMeetingName();
         if (StringUtils.isNotEmpty(name)) {
             criteria.andMeetingNameLike("%" + name + "%");

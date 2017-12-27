@@ -6,7 +6,7 @@ import lombok.Data;
  * 会与参与者
  */
 @Data
-public class MeetingUser extends BaseEntity {
+public class MtMeetingUser extends BaseEntity {
 
     /**
      * 会议主键

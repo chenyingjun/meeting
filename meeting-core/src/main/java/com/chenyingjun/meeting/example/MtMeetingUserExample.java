@@ -3,14 +3,14 @@ package com.chenyingjun.meeting.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MeetingUserExample {
+public class MtMeetingUserExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MeetingUserExample() {
+    public MtMeetingUserExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

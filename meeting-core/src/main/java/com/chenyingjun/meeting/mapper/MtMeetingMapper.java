@@ -6,5 +6,5 @@ import com.chenyingjun.meeting.utils.MyMapper;
 /**
  * 会议 mapper
  */
-public interface MeetingMapper extends MyMapper<MtMeeting> {
+public interface MtMeetingMapper extends MyMapper<MtMeeting> {
 }
