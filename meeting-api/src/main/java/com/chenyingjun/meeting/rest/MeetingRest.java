@@ -29,7 +29,7 @@ public class MeetingRest {
     @Autowired
     private MtMeetingService meetingService;
 
-    @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
+    @ApiOperation(value="获取会议信息列表", notes="获取会议信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     @ResponseBody
     public PageInfo<MtMeeting> page(@Valid @RequestBody MtMeetingFind find, @RequestParam int pageNum, @RequestParam int pageSize){

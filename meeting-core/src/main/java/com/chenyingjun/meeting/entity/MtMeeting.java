@@ -49,4 +49,9 @@ public class MtMeeting extends BaseEntity {
      *参与部门，用英文,号隔开
      */
     private String orgIds;
+
+    /**
+     * 会议室名称
+     */
+//    private String meetingRoomName;
 }

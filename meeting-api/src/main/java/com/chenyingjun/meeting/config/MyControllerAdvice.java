@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * TODO
+ * 返回异常及数据拦截类
  *
  * @author chenyingjun
  * @version 2017年12月27日
