@@ -1,14 +1,11 @@
 
 package com.chenyingjun.meeting.utils;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,10 +24,10 @@ public class FormValid implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 全局错误 */
-    private List<String> globalErrors = new ArrayList<String>();
+    private List<String> globalErrors = new ArrayList<>();
 
     /** 字段错误 */
-    private Map<String, String> fieldErrors = new HashMap<String, String>();
+    private Map<String, String> fieldErrors = new HashMap<>();
 
     public FormValid() {
         super();
@@ -39,41 +36,14 @@ public class FormValid implements Serializable {
     public FormValid(Errors errors) {
 
         if (errors.hasGlobalErrors()) {
-
             for (ObjectError error : errors.getGlobalErrors()) {
-
                 String message = error.getDefaultMessage();
-
-                if (StringUtils.isNotBlank(message)) {
-//                    try {
-//
-//                        message = URLEncoder.encode(message, "utf-8");
-//
-//                    } catch (UnsupportedEncodingException e) {
-//
-//                    }
-                }
-
                 this.globalErrors.add(message);
             }
         }
-
         if (errors.hasFieldErrors()) {
-
             for (FieldError error : errors.getFieldErrors()) {
-
                 String message = error.getDefaultMessage();
-
-                if (StringUtils.isNotBlank(message)) {
-//                    try {
-//
-//                        message = URLEncoder.encode(message, "utf-8");
-//
-//                    } catch (UnsupportedEncodingException e) {
-//
-//                    }
-                }
-
                 this.fieldErrors.put(error.getField(), message);
             }
         }
