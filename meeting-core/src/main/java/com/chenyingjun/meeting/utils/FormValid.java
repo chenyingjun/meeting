@@ -45,13 +45,13 @@ public class FormValid implements Serializable {
                 String message = error.getDefaultMessage();
 
                 if (StringUtils.isNotBlank(message)) {
-                    try {
-
-                        message = URLEncoder.encode(message, "utf-8");
-
-                    } catch (UnsupportedEncodingException e) {
-
-                    }
+//                    try {
+//
+//                        message = URLEncoder.encode(message, "utf-8");
+//
+//                    } catch (UnsupportedEncodingException e) {
+//
+//                    }
                 }
 
                 this.globalErrors.add(message);
@@ -65,13 +65,13 @@ public class FormValid implements Serializable {
                 String message = error.getDefaultMessage();
 
                 if (StringUtils.isNotBlank(message)) {
-                    try {
-
-                        message = URLEncoder.encode(message, "utf-8");
-
-                    } catch (UnsupportedEncodingException e) {
-
-                    }
+//                    try {
+//
+//                        message = URLEncoder.encode(message, "utf-8");
+//
+//                    } catch (UnsupportedEncodingException e) {
+//
+//                    }
                 }
 
                 this.fieldErrors.put(error.getField(), message);

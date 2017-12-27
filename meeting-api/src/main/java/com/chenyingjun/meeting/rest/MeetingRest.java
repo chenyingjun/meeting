@@ -11,10 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -37,8 +35,9 @@ public class MeetingRest {
     private MtMeetingService meetingService;
 
     @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
-    @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public Object page(@Valid MtMeetingFind find, BindingResult bindingResult, @RequestParam int pageNum, @RequestParam int pageSize){
+    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    @ResponseBody
+    public Object page(@Valid @RequestBody MtMeetingFind find, BindingResult bindingResult, @RequestParam int pageNum, @RequestParam int pageSize){
         Result<PageInfo<MtMeeting>> result = new Result<>("200", "分页查询会员信息成功");
         try {
 
@@ -46,7 +45,7 @@ public class MeetingRest {
 
                 FormValid formValid = new FormValid(bindingResult);
 
-                Result<FormValid> errorResult = new Result<FormValid>("500", "参数检验失败");
+                Result<FormValid> errorResult = new Result<>("500", "参数检验失败");
 
                 errorResult.setT(formValid);
 

@@ -47,14 +47,15 @@ public class Result<T> implements Serializable {
         super();
         this.code = code;
         if (StringUtils.isNotBlank(message)) {
-            try {
+            /*try {
 
                 this.message = URLEncoder.encode(message, "utf-8");
 
             } catch (UnsupportedEncodingException e) {
 
                 this.message = message;
-            }
+            }*/
+            this.message = message;
         }
     }
 
@@ -63,14 +64,15 @@ public class Result<T> implements Serializable {
         this.code = code;
         if (encode) {
             if (StringUtils.isNotBlank(message)) {
-                try {
+                /*try {
 
                     this.message = URLEncoder.encode(message, "utf-8");
 
                 } catch (UnsupportedEncodingException e) {
 
                     this.message = message;
-                }
+                }*/
+                this.message = message;
             }
         } else {
             this.message = message;
@@ -81,14 +83,15 @@ public class Result<T> implements Serializable {
         super();
         this.code = code;
         if (StringUtils.isNotBlank(message)) {
-            try {
+            /*try {
 
                 this.message = URLEncoder.encode(message, "utf-8");
 
             } catch (UnsupportedEncodingException e) {
 
                 this.message = message;
-            }
+            }*/
+            this.message = message;
         }
         this.token = token;
         this.sign = sign;
@@ -110,30 +113,33 @@ public class Result<T> implements Serializable {
     public String getMessage(boolean decode) {
         if (decode) {
             if (StringUtils.isNotBlank(message)) {
-                try {
+                /*try {
 
                     return URLDecoder.decode(message, "utf-8");
 
                 } catch (UnsupportedEncodingException e) {
 
                     return message;
-                }
-            } else
+                }*/
+                return message;
+            } else {
                 return null;
+            }
         }
         return message;
     }
 
     public void setMessage(String message) {
         if (StringUtils.isNotBlank(message)) {
-            try {
-
-                this.message = URLEncoder.encode(message, "utf-8");
-
-            } catch (UnsupportedEncodingException e) {
-
-                this.message = message;
-            }
+//            try {
+//
+//                this.message = URLEncoder.encode(message, "utf-8");
+//
+//            } catch (UnsupportedEncodingException e) {
+//
+//                this.message = message;
+//            }
+            this.message = message;
         }
     }
 
@@ -141,14 +147,15 @@ public class Result<T> implements Serializable {
 
         if (encode) {
             if (StringUtils.isNotBlank(message)) {
-                try {
+                /*try {
 
                     this.message = URLEncoder.encode(message, "utf-8");
 
                 } catch (UnsupportedEncodingException e) {
 
                     this.message = message;
-                }
+                }*/
+                this.message = message;
             }
         } else {
             this.message = message;

@@ -1,5 +1,6 @@
 package com.chenyingjun.meeting.rest;
 
+import com.chenyingjun.meeting.entity.User;
 import com.chenyingjun.meeting.entity.UserTest;
 import com.chenyingjun.meeting.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -51,15 +52,15 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserTest getUser(@PathVariable Integer id){
         logger.info("--------------------------getUser");
-        return userService.getUserTestByPrimaryKey(id);
+        return null;
     }
 
 
     @ApiOperation(value="获取用户详细信息列表", notes="获取用户详细信息列表")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public PageInfo<UserTest> selectPage(UserTest user, @RequestParam int pageNum, @RequestParam int pageSize){
-        List<UserTest> userList = userService.page(user, pageNum, pageSize);
-        return new PageInfo<>(userList);
+    public PageInfo<User> selectPage(User user, @RequestParam int pageNum, @RequestParam int pageSize){
+        PageInfo<User> userList = userService.page(user, pageNum, pageSize);
+        return userList;
     }
 
     @ApiIgnore
