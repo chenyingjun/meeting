@@ -30,9 +30,10 @@ public class MtMeetingRoomRest {
     private MtMeetingRoomService mtMeetingRoomService;
 
     @ApiOperation(value="获取会议室信息列表", notes="获取会议室信息列表")
-    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public PageInfo<MtMeetingRoom> page(@Valid @RequestBody MtMeetingRoomFind find, @RequestParam int pageNum, @RequestParam int pageSize){
+    public PageInfo<MtMeetingRoom> page(@Valid MtMeetingRoomFind find, @RequestParam int pageNum, @RequestParam int
+            pageSize){
         return mtMeetingRoomService.page(find, pageNum, pageSize);
     }
 }

@@ -30,7 +30,7 @@ public class MeetingRest {
     private MtMeetingService meetingService;
 
     @ApiOperation(value="获取会议信息列表", notes="获取会议信息列表")
-    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
     public PageInfo<MtMeetingPageVo> page(@Valid @RequestBody MtMeetingFind find, @RequestParam int pageNum, @RequestParam int pageSize){
         return meetingService.page(find, pageNum, pageSize);

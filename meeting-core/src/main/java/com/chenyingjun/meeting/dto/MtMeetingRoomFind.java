@@ -22,12 +22,10 @@ public class MtMeetingRoomFind {
     /**
      * 最小座位数
      */
-    @NotXss
     private Integer minSeatNumber;
 
     /**
      * 最大座位数
      */
-    @NotXss
     private Integer maxSeatNumber;
 }

@@ -55,6 +55,18 @@ public class BaseService<C> {
     }
 
     /**
+     * 查询列表
+     * @param list 列表信息
+     * @param pageNum 当前页码
+     * @param pageSize 每页数量
+     * @return page
+     */
+    public PageInfo<C> basePageByExample(List list, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageInfo<> (list);
+    }
+
+    /**
      * 查询信息
      * @param o 查询条件
      * @return 信息列表

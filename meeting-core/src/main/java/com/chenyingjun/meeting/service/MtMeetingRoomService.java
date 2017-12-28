@@ -32,12 +32,24 @@ public class MtMeetingRoomService extends BaseService<MtMeetingRoom>{
 
     /**
      * 分页查询
+     *
      * @param find 查询信息
      * @param pageNum 当前页码
      * @param pageSize 每页数量
      * @return 组织列表
      */
     public PageInfo<MtMeetingRoom> page(MtMeetingRoomFind find, int pageNum, int pageSize) {
+        List<MtMeetingRoom> list = this.list(find);
+        return this.basePageByExample(list, pageNum, pageSize);
+    }
+
+    /**
+     * 列表查询
+     *
+     * @param find 查询信息
+     * @return 组织列表
+     */
+    public List<MtMeetingRoom> list(MtMeetingRoomFind find) {
         MtMeetingRoomExample example = new MtMeetingRoomExample();
         MtMeetingRoomExample.Criteria criteria = example.createCriteria();
         String name = find.getName();
@@ -53,6 +65,6 @@ public class MtMeetingRoomService extends BaseService<MtMeetingRoom>{
             criteria.andSeatNumberLessThanOrEqualTo(maxSeatNumber);
         }
         criteria.andDelFlagEqualTo(CommonConsts.DEL_FLAG_NORMAL);
-        return this.basePageByExample(example, pageNum, pageSize);
+         return this.baseListByExample(example);
     }
 }
