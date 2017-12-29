@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,8 +28,8 @@ public class MyControllerAdvice implements ResponseBodyAdvice<Object>{
 
     /**
      * 全局异常捕捉处理
-     * @param ex
-     * @return
+     * @param ex 全局异常
+     * @return 异常封装
      */
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
@@ -49,13 +50,33 @@ public class MyControllerAdvice implements ResponseBodyAdvice<Object>{
 
     /**
      * 拦截捕捉参数校验异常 BindException.class
-     * @param ex
-     * @return
+     * @param ex 参数校验异常
+     * @return 异常封装
      */
     @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public JsonResponse validateErrorHandler(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
+        return bindingResult(bindingResult);
+    }
+    /**
+     * 拦截捕捉参数校验异常 BindException.class
+     * @param ex 参数校验异常
+     * @return 异常封装
+     */
+    @ResponseBody
+    @ExceptionHandler(value = BindException.class)
+    public JsonResponse validateErrorHandler(BindException ex) {
+        BindingResult bindingResult = ex.getBindingResult();
+        return bindingResult(bindingResult);
+    }
+
+    /**
+     *  异常封装
+     * @param bindingResult 参数效验情况
+     * @return 异常封装
+     */
+    private JsonResponse bindingResult(BindingResult bindingResult) {
         JsonResponse jsonResponse = new JsonResponse();
         jsonResponse.setCode(400);
         if (bindingResult.hasErrors()) {
