@@ -342,7 +342,7 @@ public class DateUtil {
 	 *
 	 * @param startDate
 	 *            待操作的日期
-	 * @param dayNum
+	 * @param hourNum
 	 *            加上的小时
 	 * @return
 	 */
@@ -874,7 +874,129 @@ public class DateUtil {
 		
 		return c.getTime();
 	}
-	
+
+	/**
+	 * 获取年的第一天
+	 *
+	 * @param date date
+	 * @return date
+	 */
+	public static Date firstDayOfYear(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		int year = calendar.get(Calendar.YEAR);
+		calendar.clear();
+		calendar.set(Calendar.YEAR, year);
+		return calendar.getTime();
+	}
+
+	/**
+	 * 获取年的最后一天
+	 *
+	 * @param date date
+	 * @return x
+	 */
+	public static Date lastDayOfYear(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		int year = calendar.get(Calendar.YEAR);
+		calendar.clear();
+		calendar.set(Calendar.YEAR, year);
+		calendar.roll(Calendar.DAY_OF_YEAR, -1);
+		return calendar.getTime();
+	}
+
+	/**
+	 * 日期的开始时间
+	 *
+	 * @param date date
+	 * @return Date
+	 */
+	public static Date startOfDay(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		return cal.getTime();
+	}
+
+	/**
+	 * 日期的结束时间
+	 *
+	 * @param date date
+	 * @return Date
+	 */
+	public static Date endOfDay(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 23);
+		cal.set(Calendar.MINUTE, 59);
+		cal.set(Calendar.SECOND, 59);
+		return cal.getTime();
+	}
+
+	/**
+	 * 获取指定时间的那天 23:59:59.999 的时间
+	 *
+	 * @param date 23:59:59.999 的时间
+	 * @return Date
+	 */
+	public static Date dayEnd(Date date) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.set(Calendar.HOUR_OF_DAY, 23);
+		c.set(Calendar.MINUTE, 59);
+		c.set(Calendar.SECOND, 59);
+		c.set(Calendar.MILLISECOND, 999);
+		return c.getTime();
+	}
+
+	/**
+	 * 获取当前周第一天----第一天设置为星期一
+	 *
+	 * @param date date
+	 * @return date
+	 */
+	public static Date firstDayOfWeek(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(date.getTime());
+		cal.set(Calendar.DAY_OF_WEEK, 2);// 设置为1号,当前日期既为本周第一天
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		return cal.getTime();
+	}
+
+	/**
+	 * 获取当前月第一天
+	 *
+	 * @param date date
+	 * @return date
+	 */
+	public static Date firstDayOfMonth(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(date.getTime());
+		cal.set(Calendar.DAY_OF_MONTH, 1);// 设置为1号,当前日期既为本月第一天
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		return cal.getTime();
+	}
+
+	/**
+	 * 获取当前月最后一天
+	 *
+	 * @param date date
+	 * @return date
+	 */
+	public static Date lastDayOfMonth(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(date.getTime());
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		return cal.getTime();
+	}
+
     public static void main(String[] args) throws Exception {
 //    	System.out.println(getDays());
 //    	System.out.println(getAfterDayWeek("3"));
